@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %} 播放清單 {% endblock %}
+{% block headmessage %} 顯示你所儲存的影片列表 {% endblock %}
+{% block content %}
+	<table class="table table-striped">
+		<tr><td>影片標題</td><td>影片ID</td></tr>
+	{% for tv in tvlist %}
+		<tr>
+			<td>
+			<a href='/play/{{tv.id}}/'>
+				{{ tv.title }}
+			</a>
+			</td>
+			<td>
+				{{ tv.vid }}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}

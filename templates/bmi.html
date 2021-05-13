@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block title %} 計算BMI {% endblock %}
+{% block headmessage %} 看看你的身體質量指數是否正常 {% endblock %}
+{% block content %}
 <form action="/bmi/" method="POST">
 	{% csrf_token %}
 身高：<input type=text name=height size=5>(公分)<br>
@@ -11,3 +13,4 @@
 計算結果如下：<br>
 {{ weight }} 公斤,{{ height }} 公分。<br>
 你的BMI是：{{ bmi }}
+{% endblock %}

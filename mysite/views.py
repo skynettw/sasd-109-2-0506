@@ -6,10 +6,11 @@ from mysite.models import TVList
 def index(request):
 	names = ["何敏煌", "王小花", "李白", "袁枚"]
 	years = range(1960, 2001)
-	
-	tvlist = TVList.objects.all()
-
 	return render(request, "index.html", locals())
+
+def playlist(request):
+	tvlist = TVList.objects.all()
+	return render(request, "playlist.html", locals())
 
 def play(request, id=1):
 	try:
