@@ -1,3 +1,12 @@
+
+<form action="/bmi/" method="POST">
+	{% csrf_token %}
+身高：<input type=text name=height size=5>(公分)<br>
+體重：<input type=text name=weight size=5>(公斤)<br>
+<input type=submit value="計算BMI">
+</form>
+
+
 計算結果如下：<br>
 {{ weight }} 公斤,{{ height }} 公分。<br>
 你的BMI是：{{ bmi }}

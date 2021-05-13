@@ -32,7 +32,7 @@
             功能選單
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">BMI計算</a></li>
+            <li><a class="dropdown-item" href="/bmi/">BMI計算</a></li>
             <li><a class="dropdown-item" href="#">播放清單</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -71,12 +71,7 @@
 	</button>
 {% endfor %}
 <br>
-<form action="/bmi/" method="POST">
-	{% csrf_token %}
-身高：<input type=text name=height size=5>(公分)<br>
-體重：<input type=text name=weight size=5>(公斤)<br>
-<input type=submit value="計算BMI">
-</form>
+
 </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
