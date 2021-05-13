@@ -1,4 +1,5 @@
-
+{% extends "base.html" %}
+{% block title %} 計算BMI {% endblock %}
 <form action="/bmi/" method="POST">
 	{% csrf_token %}
 身高：<input type=text name=height size=5>(公分)<br>
