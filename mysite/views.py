@@ -1,15 +1,23 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import random
-from mysite.models import TVList
+from mysite.models import TVList, MyList
 
 def index(request):
 	names = ["何敏煌", "王小花", "李白", "袁枚"]
 	years = range(1960, 2001)
 	return render(request, "index.html", locals())
 
-def playlist(request):
-	tvlist = TVList.objects.all()
+def playlist(request, id=0):
+	mylist = MyList.objects.all()
+	try:
+		target_list = MyList.objects.get(id=id)
+	except:
+		pass
+	if id == 0:
+		tvlist = TVList.objects.all()
+	else:
+		tvlist = TVList.objects.filter(mylist=target_list)
 	return render(request, "playlist.html", locals())
 
 def play(request, id=1):

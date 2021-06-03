@@ -2,8 +2,14 @@
 {% block title %} 播放清單 {% endblock %}
 {% block headmessage %} 顯示你所儲存的影片列表 {% endblock %}
 {% block content %}
+	
+	清單類別：
+	{% for lst in mylist %}
+	<a class="btn btn-primary btn-sm" href="/playlist/{{lst.id}}/">{{lst.name}}</a>
+	{% endfor %}
+	<br>
 	<table class="table table-striped">
-		<tr><td>影片標題</td><td>影片ID</td></tr>
+		<tr><td>影片標題</td><td>影片ID</td><td>清單名稱</td></tr>
 	{% for tv in tvlist %}
 		<tr>
 			<td>
@@ -14,6 +20,9 @@
 			<td>
 				{{ tv.vid }}
 			</td>
+			<td>
+				{{ tv.mylist }}
+			</td>			
 		</tr>
 	{% endfor %}
 	</table>
