@@ -19,6 +19,7 @@ from mysite import views
 
 urlpatterns = [
 	path('', views.index),
+    path('charts/', views.charts),
     path('play/<int:id>/', views.play),
     path('playlist/<int:id>/', views.playlist),
     path('playlist/', views.playlist),

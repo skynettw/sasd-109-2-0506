@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import random
-from mysite.models import TVList, MyList
+from mysite.models import TVList, MyList, Country, City
+
+def charts(request):
+	countries = Country.objects.all()
+	cities = City.objects.all()
+
+	return render(request, "charts.html", locals())
 
 def index(request):
 	names = ["何敏煌", "王小花", "李白", "袁枚"]
