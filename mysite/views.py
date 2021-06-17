@@ -3,10 +3,38 @@ from django.http import HttpResponse
 import random
 from mysite.models import TVList, MyList, Country, City
 
+def plist(request, name=""):
+	countries = Country.objects.all()
+	if request.method == 'POST':
+		#這是從表單來的請求
+		country_id = request.POST["country"]
+		items = int(request.POST["items"])
+		target = Country.objects.get(id=country_id)
+		if target != None:
+			if items == 0:
+				cities = City.objects.filter(country=target).order_by("population")
+			else:	
+				cities = City.objects.filter(country=target).order_by("population")[:items]
+		else:
+			if items == 0:
+				cities = City.objects.all().order_by("-population")
+			else:
+				cities = City.objects.all().order_by("-population")[:items]
+	else:
+		#這是從網址來的請求
+		if name != "":
+			target = Country.objects.get(name=name)
+			if target != None:
+				cities = City.objects.filter(country=target).order_by("population")
+			else:
+				cities = City.objects.all().order_by("-population")	
+		else:
+			cities = City.objects.all().order_by("-population")
+	return render(request, "plist.html", locals())	
+
 def charts(request):
 	countries = Country.objects.all()
-	cities = City.objects.all()
-
+	cities = City.objects.all().order_by("population")
 	return render(request, "charts.html", locals())
 
 def index(request):

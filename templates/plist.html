@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} 城市人口排行 {% endblock %}
+{% block headmessage %} <h2>國際城市人口排行</h2> {% endblock %}
+{% block content %}
+	
+	<form action='/plist/' method=POST>
+		{% csrf_token %}
+	選取國家：
+	<select name=country>
+	{% for country in countries %}
+		<option value="{{country.id}}">{{ country.name }}</option>
+	{% endfor %}
+	</select>
+	，最多顯示
+	<select name="items">
+		<option value=0>無限制</option>
+		<option value=5>5</option>
+		<option value=10>10</option>
+		<option value=50>50</option>
+	</select>
+	城市
+	<input type=submit value="送出">
+	</form>
+	<br>
+	<table class="table table-striped">
+		<tr><td>排名</td><td>城市名稱</td><td>人口數</td><td>國家</td></tr>
+	{% for city in cities %}
+		<tr>
+			<td>
+				{{ forloop.counter }}
+			</td>
+			<td>
+				{{ city.name }}
+			</td>
+			<td>
+				{{ city.population }}
+			</td>
+			<td>
+				<a href="/plist/{{city.country}}/">
+				{{ city.country }}
+				</a>
+			</td>			
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}
